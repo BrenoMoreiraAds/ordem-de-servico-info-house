@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="img/WhatsApp Image 2026-02-05 at 10.08.03.jpg"
+    />
+    <title>Info House</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+      :root {
+        --laranja: #ff9100;
+        --fundo: #0f172a;
+        --card: #111827cc;
+        --borda: #ffffff1a;
+        --texto: #e5e7eb;
+        --cinza: #94a3b8;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: radial-gradient(circle at top, #1e293b, #020617);
+        color: var(--texto);
+        margin: 0;
+      }
+
+      /* HEADER */
+      header {
+        background: linear-gradient(135deg, #ff9100, #ff6a00);
+        color: white;
+        padding: 25px 10px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      header img {
+        width: 85px;
+        margin-bottom: 6px;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4));
+      }
+
+      header h1 {
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      /* NAV */
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        background: #020617;
+        padding: 15px;
+        border-bottom: 1px solid var(--borda);
+      }
+
+      nav button {
+        background: linear-gradient(135deg, #ff9100, #ff6a00);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: 0.25s;
+        box-shadow: 0 0 15px rgba(255, 145, 0, 0.4);
+      }
+
+      nav button:hover {
+        transform: scale(1.06);
+        box-shadow: 0 0 25px rgba(255, 145, 0, 0.7);
+      }
+
+      /* CONTAINER */
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 25px;
+      }
+
+      /* CARD */
+      .card {
+        background: var(--card);
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--borda);
+        border-radius: 18px;
+        padding: 22px;
+        margin-bottom: 25px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        transition: 0.25s;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+      }
+
+      /* TITULOS */
+      h2 {
+        margin-top: 0;
+        font-weight: 600;
+        color: white;
+      }
+
+      /* FORM GRID */
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+      }
+
+      /* INPUTS */
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: #020617;
+        border: 1px solid var(--borda);
+        color: white;
+        outline: none;
+        transition: 0.2s;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--laranja);
+        box-shadow: 0 0 12px rgba(255, 145, 0, 0.4);
+      }
+
+      /* BOTÕES */
+      button {
+        background: linear-gradient(135deg, #ff9100, #ff6a00);
+        color: white;
+        border: none;
+        padding: 13px;
+        border-radius: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      button:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 18px rgba(255, 145, 0, 0.7);
+      }
+
+      /* TABELA */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 14px;
+        overflow: hidden;
+        font-size: 14px;
+      }
+
+      thead {
+        background: #020617;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border-bottom: 1px solid var(--borda);
+      }
+
+      tbody tr:hover {
+        background: #ffffff08;
+      }
+
+      /* BOTÕES AÇÕES */
+      .actions button {
+        padding: 7px 10px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-right: 6px;
+      }
+
+      /* IMPRESSÃO */
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        .print-area,
+        .print-area * {
+          visibility: visible;
+        }
+        .print-area {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          padding: 20px;
+        }
+      }
+
+      .print-logo {
+        width: 120px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img src="img/WhatsApp Image 2026-02-05 at 10.08.03.jpg" />
+      <h1>Info House</h1>
+    </header>
+
+    <nav>
+      <button onclick="mostrarAba('pecas')">📦 Controle de Peças</button>
+      <button onclick="mostrarAba('os')">🛠️ Ordem de Serviço</button>
+    </nav>
+
+    <div class="container">
+      <!-- ================= ABA PEÇAS ================= -->
+      <div id="aba-pecas">
+        <div class="card">
+          <h2>Novo Pedido de Peça</h2>
+          <div class="form-grid">
+            <input id="nome" placeholder="Nome do cliente" />
+            <input id="telefone" placeholder="Telefone / WhatsApp" />
+            <input id="data" type="date" />
+            <input id="tipo" placeholder="Tipo da peça" />
+            <input id="modelo" placeholder="Modelo da peça" />
+            <select id="status">
+              <option>Pedido realizado</option>
+              <option>Peça em trânsito</option>
+              <option>Peça chegou</option>
+              <option>Entregue ao cliente</option>
+            </select>
+            <textarea id="obs" placeholder="Observações"></textarea>
+          </div>
+          <br />
+          <button onclick="salvarPedido()">Salvar Pedido</button>
+        </div>
+
+        <div class="card">
+          <h2>Pedidos Cadastrados</h2>
+          <input
+            id="buscar"
+            placeholder="Buscar por nome ou modelo..."
+            onkeyup="listarPedidos()"
+          />
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Data</th>
+                <th>Peça</th>
+                <th>Modelo</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="listaPedidos"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= ABA ORDEM DE SERVIÇO ================= -->
+      <div id="aba-os" style="display: none">
+        <div class="card">
+          <h2>Nova Ordem de Serviço</h2>
+          <div class="form-grid">
+            <input id="os_nome" placeholder="Nome do cliente" />
+            <input id="os_telefone" placeholder="Telefone" />
+            <select id="os_equipamento">
+              <option>Impressora</option>
+              <option>Notebook</option>
+              <option>Computador</option>
+            </select>
+            <textarea
+              id="os_problema"
+              placeholder="Problema relatado"
+            ></textarea>
+            <textarea
+              id="os_acessorios"
+              placeholder="Acessórios entregues"
+            ></textarea>
+          </div>
+          <br />
+          <button onclick="salvarOS()">Salvar Ordem</button>
+        </div>
+
+        <div class="card">
+          <h2>Ordens de Serviço</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Equipamento</th>
+                <th>Problema</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="listaOS"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁREA DE IMPRESSÃO -->
+    <div class="print-area" id="printArea"></div>
+
+    <script>
+      let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+      let ordens = JSON.parse(localStorage.getItem("ordens")) || [];
+
+      function mostrarAba(aba) {
+        document.getElementById("aba-pecas").style.display =
+          aba === "pecas" ? "block" : "none";
+        document.getElementById("aba-os").style.display =
+          aba === "os" ? "block" : "none";
+      }
+
+      function salvarPedido() {
+        if (!nome.value || !modelo.value) {
+          alert("Preencha nome e modelo da peça.");
+          return;
+        }
+        pedidos.push({
+          nome: nome.value,
+          telefone: telefone.value,
+          data: data.value,
+          tipo: tipo.value,
+          modelo: modelo.value,
+          status: status.value,
+          obs: obs.value,
+        });
+        localStorage.setItem("pedidos", JSON.stringify(pedidos));
+        listarPedidos();
+        nome.value =
+          telefone.value =
+          data.value =
+          tipo.value =
+          modelo.value =
+          obs.value =
+            "";
+      }
+
+      function listarPedidos() {
+        listaPedidos.innerHTML = "";
+        const filtro = buscar.value.toLowerCase();
+        pedidos.forEach((p, i) => {
+          if (
+            p.nome.toLowerCase().includes(filtro) ||
+            p.modelo.toLowerCase().includes(filtro)
+          ) {
+            listaPedidos.innerHTML += `
+      <tr>
+        <td>${p.nome}</td>
+        <td>${p.telefone}</td>
+        <td>${p.data}</td>
+        <td>${p.tipo}</td>
+        <td>${p.modelo}</td>
+        <td>${p.status}</td>
+        <td class="actions">
+          <button onclick="imprimirPedido(${i})">🖨️</button>
+          <button onclick="excluirPedido(${i})">🗑️</button>
+        </td>
+      </tr>`;
+          }
+        });
+      }
+
+      function imprimirPedido(i) {
+        const p = pedidos[i];
+        const logoHTML = `<img src="img/WhatsApp Image 2026-02-05 at 10.08.03.jpg" class="print-logo">`;
+        printArea.innerHTML = `
+    ${logoHTML}
+    <h2>Pedido de Peça - Info House</h2>
+    <hr>
+    <p><strong>Cliente:</strong> ${p.nome}</p>
+    <p><strong>Telefone:</strong> ${p.telefone}</p>
+    <p><strong>Data:</strong> ${p.data}</p>
+    <p><strong>Peça:</strong> ${p.tipo}</p>
+    <p><strong>Modelo:</strong> ${p.modelo}</p>
+    <p><strong>Status:</strong> ${p.status}</p>
+    <p><strong>Observações:</strong> ${p.obs || "-"}</p>
+    <br>
+    <p>Assinatura do cliente: ________________________________</p>
+  `;
+        printArea.style.display = "block";
+        window.print();
+        printArea.style.display = "none";
+      }
+
+      function excluirPedido(i) {
+        if (confirm("Excluir pedido?")) {
+          pedidos.splice(i, 1);
+          localStorage.setItem("pedidos", JSON.stringify(pedidos));
+          listarPedidos();
+        }
+      }
+
+      function salvarOS() {
+        if (!os_nome.value || !os_problema.value) {
+          alert("Preencha nome e problema.");
+          return;
+        }
+        ordens.push({
+          nome: os_nome.value,
+          telefone: os_telefone.value,
+          equipamento: os_equipamento.value,
+          problema: os_problema.value,
+          acessorios: os_acessorios.value,
+        });
+        localStorage.setItem("ordens", JSON.stringify(ordens));
+        listarOS();
+        os_nome.value =
+          os_telefone.value =
+          os_problema.value =
+          os_acessorios.value =
+            "";
+      }
+
+      function listarOS() {
+        listaOS.innerHTML = "";
+        ordens.forEach((o, i) => {
+          listaOS.innerHTML += `
+    <tr>
+      <td>${o.nome}</td>
+      <td>${o.equipamento}</td>
+      <td>${o.problema}</td>
+      <td class="actions">
+        <button onclick="imprimirOS(${i})">🖨️</button>
+        <button onclick="excluirOS(${i})">🗑️</button>
+      </td>
+    </tr>`;
+        });
+      }
+
+      function imprimirOS(i) {
+        const o = ordens[i];
+        const logoHTML = `<img src="img/WhatsApp Image 2026-02-05 at 10.08.03.jpg" class="print-logo">`;
+        printArea.innerHTML = `
+    ${logoHTML}
+    <h2>Ordem de Serviço - Info House</h2>
+    <hr>
+    <p><strong>Cliente:</strong> ${o.nome}</p>
+    <p><strong>Telefone:</strong> ${o.telefone}</p>
+    <p><strong>Equipamento:</strong> ${o.equipamento}</p>
+    <p><strong>Problema:</strong> ${o.problema}</p>
+    <p><strong>Acessórios:</strong> ${o.acessorios || "-"}</p>
+    <br>
+    <p>Assinatura do cliente: ________________________________</p>
+  `;
+        printArea.style.display = "block";
+        window.print();
+        printArea.style.display = "none";
+      }
+
+      function excluirOS(i) {
+        if (confirm("Excluir ordem de serviço?")) {
+          ordens.splice(i, 1);
+          localStorage.setItem("ordens", JSON.stringify(ordens));
+          listarOS();
+        }
+      }
+
+      listarPedidos();
+      listarOS();
+    </script>
+  </body>
+</html>
